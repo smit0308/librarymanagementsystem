@@ -1,0 +1,56 @@
+{% load static %}
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to Chai's Django Project</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>Welcome to Django Project</h1>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="{% static 'css/logincss.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- <nav class="navbar">
+        <img class="navbar-brand">
+            <img src="{% static 'img/logo.jpg' %}" style="width: 60px; height: 50px;">
+            <span>Public Library</span>
+        </img>
+        <button class="navbar-home"><a href="{% url 'home' %}" >Home</a></button>
+        <button class="navbar-home"><a href="{% url 'register' %}" >Register</a></button>
+    </nav> -->
+    <header>
+        <div class="logo">
+            <img src="{% static 'img/logo.jpg' %}" alt="Library Logo">
+            <h1>Public Library</h1>
+        </div>
+        <button class="login-btn"><a href="{% url 'login' %}" >Login</a></button>
+    </header>
+    <div class="main">
+    <div class="login-container">
+        <form class="login-form">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password">
+            <button type="submit">Login</button>
+        </form>
+        <div class="signup-options">
+            <p>Signup using Google</p>
+            <p>Signup using email address</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

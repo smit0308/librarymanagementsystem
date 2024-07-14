@@ -1,0 +1,110 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 20px;
+    border-bottom: 2px solid #ccc;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.logo h1 {
+    font-size: 24px;
+    color: #333;
+}
+
+.login-btn {
+    background-color: #ff6b6b;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.search-section {
+    text-align: center;
+    padding: 50px;
+}
+
+.search-section h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #ff6b6b;
+}
+
+.search-input {
+    width: 50%;
+    padding: 10px;
+    font-size: 18px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.search-btn {
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    background-color: #6ba4ff;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.books-section {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.books-section h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.new-arrivals, .trending {
+    width: 45%;
+}
+
+.new-arrivals ul, .trending ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.new-arrivals li, .trending li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.new-arrivals img, .trending img {
+    width: 50px;
+    height: 70px;
+    margin-right: 10px;
+}
+
+.new-arrivals p, .trending p {
+    margin: 0;
+    font-size: 16px;
+}
+

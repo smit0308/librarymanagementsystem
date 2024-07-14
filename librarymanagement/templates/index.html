@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public Library</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{% static 'img/logo.jpg' %}" alt="Library Logo">
+            <h1>Public Library</h1>
+        </div>
+        <button class="login-btn"><a href="{% url 'login' %}" >Login</a></button>
+    </header>
+    <main>
+        <section class="search-section">
+            <h2>Search the books available in the library</h2>
+            <input type="text" placeholder="Enter book name..." class="search-input">
+            <button class="search-btn">Search</button>
+        </section>
+        <section class="books-section">
+            <div class="new-arrivals">
+                <h3>New Arrivals</h3>
+                <ul>
+                    <li>
+                        <img src="book1.jpg" alt="Book 1">
+                        <p><strong>Python Tricks</strong><br>by Dan Bader<br>Publication Year: 2017</p>
+                    </li>
+                    <li>
+                        <img src="book2.jpg" alt="Book 2">
+                        <p><strong>Learning Scientific Programming with Python</strong><br>by Christian Hill<br>Publication Year: 2020</p>
+                    </li>
+                    <!-- More book items -->
+                </ul>
+            </div>
+            <div class="trending">
+                <h3>Trending</h3>
+                <ul>
+                    <li>
+                        <img src="book3.jpg" alt="Book 3">
+                        <p><strong>Flask Web Development, 2nd Edition</strong><br>by Miguel Grinberg<br>Publication Year: 2018</p>
+                    </li>
+                    <li>
+                        <img src="book4.jpg" alt="Book 4">
+                        <p><strong>Odoo 12 Development Cookbook</strong><br>by Parth Gajjar<br>Publication Year: 2018</p>
+                    </li>
+                    <!-- More book items -->
+                </ul>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
