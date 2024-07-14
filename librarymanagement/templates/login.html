@@ -30,16 +30,25 @@
         <button class="navbar-home"><a href="{% url 'home' %}" >Home</a></button>
         <button class="navbar-home"><a href="{% url 'register' %}" >Register</a></button>
     </nav> -->
-    <header>
+    <nav class="navbar navbar-light bg-light justify-content-between">
         <div class="logo">
             <img src="{% static 'img/logo.jpg' %}" alt="Library Logo">
             <h1>Public Library</h1>
         </div>
-        <button class="login-btn"><a href="{% url 'login' %}" >Login</a></button>
-    </header>
+        <form class="form-inline">
+            <button class="login-btn" type="button" onclick="window.location.href='{% url 'search' %}'">Search</button>
+            <button class="login-btn" type="button" onclick="window.location.href='{% url 'user' %}'">User</button>
+            <button class="login-btn" type="button" onclick="window.location.href='{% url 'registerform' %}'">Register Form</button>
+            <button class="login-btn" type="button" onclick="window.location.href='{% url 'login' %}'">Login</button>
+            <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+        </form>
+        
+      </nav>
     <div class="main">
     <div class="login-container">
-        <form class="login-form">
+        <form action="{% url 'login' %}" class="login-form" method="post">
+            {% csrf_token %}
             <label for="username">Username</label>
             <input type="text" id="username" name="username">
             <label for="password">Password</label>

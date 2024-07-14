@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Details</title>
+</head>
+<body>
+    <h1>Book Details</h1>
+    <img src="{{ book.imageUrl }}" alt="Book Image">
+    <h2>{{ book.title }}</h2>
+    <p><strong>Authors:</strong> {{ book.authors|join:", " }}</p>
+    <p><strong>Rating:</strong> {{ book.rating }}</p>
+    <p><strong>Total Ratings:</strong> {{ book.totalRatings }}</p>
+    <p><strong>Published Year:</strong> {{ book.publishedYear }}</p>
+    <p><strong>Total Editions:</strong> {{ book.totalEditions }}</p>
+    <p><a href="https://www.goodreads.com{{ book.bookUrl }}">View on Goodreads</a></p>
+</body>
+</html>

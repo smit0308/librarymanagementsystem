@@ -22,16 +22,26 @@
 <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar">
+    <!-- <nav class="navbar">
         <img class="navbar-brand">
-            <!-- <img src="public-library-logo.png" alt="Public Library Logo" class="logo"> -->
             <img src="{% static 'img/logo.jpg' %}" style="width: 60px; height: 50px;">
             <span>Public Library</span>
         </img>
         <button class="navbar-home" style="margin-right: 20px;">Home</button>
-    </nav>
+    </nav> -->
+    <header>
+        <div class="logo">
+            <a href="{% url 'home' %}" ><img src="{% static 'img/logo.jpg' %}" alt="Library Logo"></a>
+            <a onclick="window.location.href='{% url 'home' %}'" ><h1>Public Library</h1></a>
+            
+        </div>
+        <button class="login-btn" onclick="window.location.href='{% url 'login' %}'">Login</button>
+
+    </header>
+    <div class="main">
     <div class="login-container">
-        <form class="login-form">
+        <form action="{% url 'register' %}" class="login-form" method="post">
+            {% csrf_token %}
             <label for="username">Username</label>
             <input type="text" id="username" name="username">
             <label for="firstname">First Name</label>
@@ -43,11 +53,12 @@
             <label for="password">Password</label>
             <input type="password" id="password" name="password">
             <button type="submit">Register</button>
-        </form>
+        </form>        
         <div class="signup-options">
             <p>Signup using Google</p>
             <p>Signup using email address</p>
         </div>
     </div>
+</div>
 </body>
 </html>

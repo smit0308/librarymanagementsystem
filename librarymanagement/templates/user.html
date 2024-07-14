@@ -1,0 +1,66 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="{% static 'css/user.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light justify-content-between">
+        <div class="logo">
+            <img src="{% static 'img/logo.jpg' %}" alt="Library Logo">
+            <h1>Public Library</h1>
+        </div>
+        <form class="form-inline">
+            <button class="login-btn" type="button" onclick="window.location.href='{% url 'home' %}'">Home</button>
+            <button class="login-btn" type="button" onclick="window.location.href='{% url 'user' %}'">User</button>
+            <button class="login-btn" type="button" onclick="window.location.href='{% url 'registerform' %}'">Register Form</button>
+            <button class="login-btn" type="button" onclick="window.location.href='{% url 'login' %}'">Login</button>
+        </form> 
+      </nav>
+    <div class="container">
+        <main>
+            <section class="search-books">
+                <h2>Search Books</h2>
+                <input type="text" placeholder="Enter book keyword">
+                <button class="search-btn">Search</button>
+                <section class="my-books">
+                    <h2>My Books</h2>
+                    <div class="book-item">
+                        <img src="book-cover.png" alt="Book Cover">
+                        <div class="book-info">
+                            <h3>Odum's Deployment Cookbook: Rapidly build containerized...</h3>
+                            <p>Written by a top expert in the field, this book covers...</p>
+                            <button class="request-book-btn">Request Book</button>
+                        </div>
+                    </div>
+                </section>
+            </section>
+            <section class="user-profile">
+                <h2>User Profile</h2>
+                <img src="user-photo.png" alt="User Photo">
+                <h3>Mitchell Admin</h3>
+                <p>York Company</p>
+                <ul>
+                    <li>123 Vine St</li>
+                    <li>Scranton, PA 18503</li>
+                    <li>United States</li>
+                    <li>+1 555-555-5555</li>
+                    <li>mitch.admin@company.example.com</li>
+                </ul>
+                <button class="edit-profile-btn">Edit Information</button>
+                <div class="contact-info">
+                    <h3>Your contact</h3>
+                    <p>Mitchell Admin</p>
+                    <p>mitch.admin@company.example.com</p>
+                    <p>+1 555-555-5555</p>
+                    <button class="service-btn">Service</button>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
