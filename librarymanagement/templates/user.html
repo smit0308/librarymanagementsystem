@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/user.css' %}">
 </head>
 <body>
@@ -14,53 +15,52 @@
             <img src="{% static 'img/logo.jpg' %}" alt="Library Logo">
             <h1>Public Library</h1>
         </div>
-        <form class="form-inline">
+        <form class="form-inline nav-buttons">
             <button class="login-btn" type="button" onclick="window.location.href='{% url 'home' %}'">Home</button>
-            <button class="login-btn" type="button" onclick="window.location.href='{% url 'user' %}'">User</button>
+            <button class="login-btn" type="button" onclick="window.location.href='{% url 'search_books' %}'">Search</button>
             <button class="login-btn" type="button" onclick="window.location.href='{% url 'registerform' %}'">Register Form</button>
-            <button class="login-btn" type="button" onclick="window.location.href='{% url 'login' %}'">Login</button>
+            <button class="login-btn" type="button" onclick="window.location.href='{% url 'logout_view' %}'">Logout</button>
         </form> 
-      </nav>
+    </nav>
     <div class="container">
-        <main>
+        <main class="d-flex justify-content-between mt-4">
             <section class="search-books">
                 <h2>Search Books</h2>
-                <input type="text" placeholder="Enter book keyword">
-                <button class="search-btn">Search</button>
-                <section class="my-books">
+                <input type="text" class="form-control" placeholder="Enter book keyword">
+                <button class="search-btn btn btn-primary mt-2">Search</button>
+                <section class="my-books mt-4">
                     <h2>My Books</h2>
-                    <div class="book-item">
-                        <img src="book-cover.png" alt="Book Cover">
+                    {% for booked in booked_books %}
+                    <div class="book-item d-flex align-items-center mt-3">
+                        <img src="{% static 'img/book-cover.png' %}" alt="Book Cover" class="mr-3">
                         <div class="book-info">
-                            <h3>Odum's Deployment Cookbook: Rapidly build containerized...</h3>
-                            <p>Written by a top expert in the field, this book covers...</p>
-                            <button class="request-book-btn">Request Book</button>
+                            <h3>{{ booked.book_name }}</h3>
+                            <p>Written by {{ booked.author_name }}</p>
                         </div>
                     </div>
+                    {% empty %}
+                    <p>No books booked yet.</p>
+                    {% endfor %}
                 </section>
             </section>
             <section class="user-profile">
                 <h2>User Profile</h2>
-                <img src="user-photo.png" alt="User Photo">
-                <h3>Mitchell Admin</h3>
-                <p>York Company</p>
-                <ul>
-                    <li>123 Vine St</li>
-                    <li>Scranton, PA 18503</li>
-                    <li>United States</li>
-                    <li>+1 555-555-5555</li>
-                    <li>mitch.admin@company.example.com</li>
+                <img src="{% static 'img/user-photo.png' %}" alt="User Photo" class="rounded-circle">
+                <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+                <ul class="list-unstyled">
+                    <li>Username: {{ user.username }}</li>
+                    <li>Email: {{ user.email }}</li>
+                    {% if not user.is_superuser %}
+                        <li>Phone No.: {{ read.contact }}</li>
+                        <li>Address: {{ read.address }}</li>
+                    {% endif %}
                 </ul>
-                <button class="edit-profile-btn">Edit Information</button>
-                <div class="contact-info">
-                    <h3>Your contact</h3>
-                    <p>Mitchell Admin</p>
-                    <p>mitch.admin@company.example.com</p>
-                    <p>+1 555-555-5555</p>
-                    <button class="service-btn">Service</button>
-                </div>
+                <button class="edit-profile-btn btn btn-success">Edit Information</button>
             </section>
         </main>
     </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
 </body>
 </html>

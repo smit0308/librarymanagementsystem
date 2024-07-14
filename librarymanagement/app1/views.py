@@ -17,11 +17,11 @@ def user_login(request):
         user = authenticate(request, username=username, password=password)
         print(user)
         if user is not None:
-            auth_login(request, user)  # Use auth_login to avoid conflict
+            auth_login(request, user)
             return redirect('/')  
         else:
             messages.error(request, 'Invalid email or password')
-            return render(request, 'login.html', {'login_failed': True})
+            return render(request, 'login.html', {'login_failed': True},'Invalid user or password')
     else:
         return render(request, 'login.html')
 
@@ -37,7 +37,6 @@ def register(request):
         x = User.objects.create_user(username=username, first_name=firstname, last_name=lastname, email=email, password=password)
         x.save()
         
-         # Create the reader instance
         reader_instance = reader.objects.create(
             user=x,
             user_name=username,
@@ -57,21 +56,15 @@ def registerform(request):
         full_name = request.POST['full_name']
         address = request.POST['address']
         contact = request.POST['contact']
-        ic_upload = request.FILES['ic_upload']
+        pic_upload = request.FILES['pic_upload']
 
-        # Get the logged-in user
         user = request.user
 
-        # Split the full name into first and last name
-        first_name, last_name = full_name.split(' ', 1)
 
-        # Update the Reader instance
         reader_instance = reader.objects.get(user=user)
         reader_instance.full_name = full_name
         reader_instance.address = address
         reader_instance.contact = contact
-        reader_instance.first_name = first_name
-        reader_instance.last_name = last_name
         reader_instance.save()
 
         print("Reader updated successfully")

@@ -29,7 +29,12 @@ urlpatterns = [
     path('app1/',include('app1.urls')),
     path('search/', views.search, name='search'),
     path('user/', views.user, name='user'),
-    path('fetch_books/', views.fetch_books, name='fetch_books'), 
+    path('books/', views.get_books, name='get_books'),
+    path('search_books/', views.search_books, name='search_books'),
+    path('logout_view/', views.logout_view, name='logout_view'),
+    path('get_books/', views.get_books, name='get_books'),
+    path('all_books/', views.search_bk, name='all_books'),
+    path('add_booked/',views.add_booked,name='add_booked'),
 
 ]
 

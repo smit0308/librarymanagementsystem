@@ -9,17 +9,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-    <!-- <header>
-        <div class="logo">
-            <img src="{% static 'img/logo.jpg' %}" alt="Library Logo">
-            <h1>Public Library</h1>
-        </div>
-        <div class="topnav-right">
-        <button class="login-btn" onclick="window.location.href='{% url 'search' %}'">Search</button>
-        <button class="login-btn" onclick="window.location.href='{% url 'user' %}'">User</button>
-        <button class="login-btn" onclick="window.location.href='{% url 'login' %}'">Login</button>
-        </div>
-    </header> -->
     
     <nav class="navbar navbar-light bg-light justify-content-between">
         <div class="logo">
@@ -27,34 +16,55 @@
             <h1>Public Library</h1>
         </div>
         <form class="form-inline">
-            <button class="login-btn" type="button" onclick="window.location.href='{% url 'search' %}'">Search</button>
-            <button class="login-btn" type="button" onclick="window.location.href='{% url 'user' %}'">User</button>
-            <button class="login-btn" type="button" onclick="window.location.href='{% url 'registerform' %}'">Register Form</button>
-            <button class="login-btn" type="button" onclick="window.location.href='{% url 'login' %}'">Login</button>
-            <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+            {% if user.is_authenticated %}
+                <button class="login-btn" type="button" onclick="window.location.href='{% url 'search_books' %}'">Search</button>
+                <button class="login-btn" type="button" onclick="window.location.href='{% url 'user' %}'">User</button>
+                <button class="login-btn" type="button" onclick="window.location.href='{% url 'all_books' %}'">Books</button>
+                <button class="login-btn" type="button" onclick="window.location.href='{% url 'registerform' %}'">Register Form</button>
+                <button class="login-btn" type="button" onclick="window.location.href='{% url 'logout_view' %}'">Logout</button>
+            {% else %}
+                <button class="login-btn" type="button" onclick="window.location.href='{% url 'login' %}'">Login</button>
+                <button class="login-btn" type="button" onclick="window.location.href='{% url 'register' %}'">Sign Up</button>
+            {% endif %}
         </form>
         
-      </nav>
+    </nav>
     <main>
         <section class="search-section">
             <h2>Search the books available in the library</h2>
-            <input type="text" placeholder="Enter book name..." class="search-input">
-            <button class="search-btn">Search</button>
+            <form method="POST" action="{% url 'search_books' %}">
+                {% csrf_token %}
+                <input type="text" name="search_term" placeholder="Enter book name or author..." class="search-input">
+                <button type="submit" class="search-btn">Search</button>
+            </form>
         </section>
+
+        <section class="books-section">
+            {% if books %}
+            <div class="search-results">
+                <h3>Search Results</h3>
+                <ul>
+                    {% for book in books %}
+                    <li>
+                        <img src="{{ book.bookImage }}" alt="{{ book.bookTitle }}">
+                        <p><strong>{{ book.bookTitle }}</strong><br>by {{ book.bookAuthor }}<br>Published Year: {{ book.publishedYear }}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </section>
+        
         <section class="books-section">
             <div class="new-arrivals">
                 <h3>New Arrivals</h3>
                 <ul>
+                    {% for book in first_five_books %}
                     <li>
-                        <img src="book1.jpg" alt="Book 1">
-                        <p><strong>Python Tricks</strong><br>by Dan Bader<br>Publication Year: 2017</p>
+                        <img src="{{ book.bookImage }}" alt="{{ book.bookTitle }}">
+                        <p><strong>{{ book.bookTitle }}</strong><br>by {{ book.bookAuthor }}<br>ISBN No: {{ book.bookIsbn }}</p>
                     </li>
-                    <li>
-                        <img src="book2.jpg" alt="Book 2">
-                        <p><strong>Learning Scientific Programming with Python</strong><br>by Christian Hill<br>Publication Year: 2020</p>
-                    </li>
-                    <!-- More book items -->
+                    {% endfor %}
                 </ul>
             </div>
             <div class="trending">
@@ -68,10 +78,10 @@
                         <img src="book4.jpg" alt="Book 4">
                         <p><strong>Odoo 12 Development Cookbook</strong><br>by Parth Gajjar<br>Publication Year: 2018</p>
                     </li>
-                    <!-- More book items -->
                 </ul>
             </div>
         </section>
     </main>
+    
 </body>
 </html>

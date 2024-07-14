@@ -7,6 +7,49 @@
     <title>Search Result</title>
     <link rel="stylesheet" href="{% static 'css/search.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script>
+        function searchBooks() {
+            var searchTerm = document.getElementById('searchInput').value.trim(); 
+    
+            if (searchTerm === '') {
+                alert('Please enter a search term.');
+                return;
+            }
+    
+            var url = `https://all-books-api.p.rapidapi.com/getBooks?search=${searchTerm}`;
+    
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'x-rapidapi-key': '0c0393d662mshb446aa2c351340dp198f0bjsn1a7dfd746322',
+                    'x-rapidapi-host': 'all-books-api.p.rapidapi.com'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+
+                document.getElementById('searchResults').innerHTML = '';
+    
+
+                data.forEach(book => {
+                    var bookHtml = `
+                        <div class="book-item">
+                            <img src="${book.bookImage}" alt="Book Cover">
+                            <div class="book-info">
+                                <h3>${book.bookTitle}</h3>
+                                <p>${book.bookDescription}</p>
+                                <span>Author: ${book.bookAuthor}</span><br>
+                                <span>Publisher: ${book.bookPublisher}</span><br>
+                                <a href="${book.amazonBookUrl}" target="_blank">Buy on Amazon</a>
+                            </div>
+                        </div>`;
+                    document.getElementById('searchResults').innerHTML += bookHtml;
+                });
+            })
+            .catch(error => console.error('Error fetching books:', error));
+        }
+    </script>
+    
 </head>
 <body>
     <nav class="navbar navbar-light bg-light justify-content-between">
@@ -19,40 +62,16 @@
             <button class="login-btn" type="button" onclick="window.location.href='{% url 'user' %}'">User</button>
             <button class="login-btn" type="button" onclick="window.location.href='{% url 'registerform' %}'">Register Form</button>
             <button class="login-btn" type="button" onclick="window.location.href='{% url 'login' %}'">Login</button>
+            <input type="text" id="searchInput" placeholder="Search books by ISBN, Author, Publisher, or Title">
+            <button type="button" class="search-btn" onclick="searchBooks()">Search</button>
         </form> 
       </nav>
     <div class="container">
         <main>
-            <section class="search-books">
-                <h2>Searching Books</h2>
-                <input type="text" placeholder="Odoo Development">
-                <button class="search-btn">Search</button>
+            <section class="search-results">
+                <h2>Search Results</h2>
+                <div id="searchResults"></div>
             </section>
-            <section class="my-books">
-                <div class="book-item">
-                    <img src="book-cover.png" alt="Book Cover">
-                    <div class="book-info">
-                        <h3>Odoo 14 Development Cookbook: Rapidly build, customize, and ...</h3>
-                        <p>With over 200 recipes covering real-world examples, take your Odoo development skills to the next level and solve complex business problems using this guide. Key Features: Learn to develop new modules and modify existing modules using the Odoo...</p>
-                        <span class="status arriving">Arriving in 6 Days</span>
-                    </div>
-                </div>
-                <div class="book-item">
-                    <img src="book-cover.png" alt="Book Cover">
-                    <div class="book-info">
-                        <h3>Odoo 14 Development Cookbook: Rapidly build, customize, and ...</h3>
-                        <p>With over 200 recipes covering real-world examples, take your Odoo development skills to the next level and solve complex business problems using this guide. Key Features: Learn to develop new modules and modify existing modules using the Odoo...</p>
-                        <span class="status available">Available 3 Copy</span>
-                    </div>
-                </div>
-            </section>
-            <nav class="pagination">
-                <span>Page :</span>
-                <a href="#">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">Next Page</a>
-            </nav>
         </main>
     </div>
 </body>

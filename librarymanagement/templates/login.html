@@ -1,14 +1,4 @@
 {% load static %}
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    <title>Welcome to Chai's Django Project</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
-    <h1>Welcome to Django Project</h1>
-</body>
-</html> -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,34 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Form</title>
     <link rel="stylesheet" href="{% static 'css/logincss.css' %}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 </head>
 <body>
-    <!-- <nav class="navbar">
-        <img class="navbar-brand">
-            <img src="{% static 'img/logo.jpg' %}" style="width: 60px; height: 50px;">
-            <span>Public Library</span>
-        </img>
-        <button class="navbar-home"><a href="{% url 'home' %}" >Home</a></button>
-        <button class="navbar-home"><a href="{% url 'register' %}" >Register</a></button>
-    </nav> -->
     <nav class="navbar navbar-light bg-light justify-content-between">
         <div class="logo">
             <img src="{% static 'img/logo.jpg' %}" alt="Library Logo">
             <h1>Public Library</h1>
         </div>
-        <form class="form-inline">
-            <button class="login-btn" type="button" onclick="window.location.href='{% url 'search' %}'">Search</button>
-            <button class="login-btn" type="button" onclick="window.location.href='{% url 'user' %}'">User</button>
-            <button class="login-btn" type="button" onclick="window.location.href='{% url 'registerform' %}'">Register Form</button>
-            <button class="login-btn" type="button" onclick="window.location.href='{% url 'login' %}'">Login</button>
-            <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
-        </form>
-        
-      </nav>
+        <form class="form-inline nav-buttons">
+            <button class="login-btn " type="button" onclick="window.location.href='{% url 'home' %}'">Home</button>
+            <button class="login-btn " type="button" onclick="window.location.href='{% url 'register' %}'">Signup</button>
+        </form> 
+    </nav>
     <div class="main">
     <div class="login-container">
         <form action="{% url 'login' %}" class="login-form" method="post">

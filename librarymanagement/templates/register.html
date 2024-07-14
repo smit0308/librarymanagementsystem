@@ -1,14 +1,4 @@
 {% load static %}
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    <title>Welcome to Chai's Django Project</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
-    <h1>Welcome to Django Project</h1>
-</body>
-</html> -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,13 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- <nav class="navbar">
-        <img class="navbar-brand">
-            <img src="{% static 'img/logo.jpg' %}" style="width: 60px; height: 50px;">
-            <span>Public Library</span>
-        </img>
-        <button class="navbar-home" style="margin-right: 20px;">Home</button>
-    </nav> -->
+
     <header>
         <div class="logo">
             <a href="{% url 'home' %}" ><img src="{% static 'img/logo.jpg' %}" alt="Library Logo"></a>
